@@ -1,0 +1,150 @@
+*{
+  margin: 0;
+  box-sizing: border-box;
+}
+.App {
+  padding: 2rem 0;
+  width: 80rem;
+  max-width: 94%;
+  margin: 0 auto;
+}
+
+.appHeader{
+  text-transform: uppercase;
+}
+
+.textCenter{
+  text-align: center;
+}
+
+.loading{
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.searchForm{
+  width: 40rem;
+  max-width: 94%;
+  margin: 2rem auto 4rem auto;
+  height: 2rem;
+  display: flex;
+
+}
+
+.searchSubmit{
+  width: 8rem;
+  height: 100%;
+}
+
+.inputWrapper{
+  position: relative;
+  height: 100%;
+  flex: 1;
+}
+
+.searchInput{
+  width: 100%;
+  height: 100%;
+  padding-left: 1rem;
+}
+
+.searchAutoComplete{
+  width: 100%;
+  max-height: 12rem;
+  overflow-y: auto;
+  overflow-x:hidden;
+  word-break: break-all;
+  border-radius: 0.2rem;
+  border: 1px solid grey;
+  text-align: left;
+  z-index: 2;
+  background-color: white;
+}
+
+.searchAutoComplete>p{
+  padding-left: 1rem;
+  cursor: pointer;
+}
+
+.searchAutoComplete>p:hover{
+  background-color: lightgray;
+}
+
+.thumbnailGrid {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(16rem, 1fr))[auto-fill];
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  grid-gap: 0.2rem;
+}
+
+
+
+
+
+.movieItem{
+  width: 100%;
+  height: 12rem;
+  position: relative;
+}
+
+.movieItem img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.movieItem p{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(200,200,200, 0.7);
+  padding: 0.2rem 0.4rem;
+  color: black;
+  font-weight: bold;
+}
+
+
+.movieView{
+  display: flex;
+  flex-wrap: wrap;
+  padding: 2rem 0;
+}
+
+.movieView img{
+  width: 20rem;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.movieView .description{
+  flex: 1;
+  min-width: 20rem;
+  max-width: 100%;
+  padding: 0.2rem 1rem;
+}
+
+.movieView p{
+  margin: 0.4rem 0;
+}
+
+.overview{
+  margin-top: 2rem !important;
+}
+
+.genres{
+  width: 100%;
+  margin: 1.4rem 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.genreItem{
+  margin: 0 0.4rem;
+  padding: 0 1rem;
+  font-weight: bold;
+  border-radius: 1rem;
+  background-color: lightgray;
+}
+

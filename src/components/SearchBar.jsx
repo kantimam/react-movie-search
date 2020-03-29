@@ -1,81 +1,84 @@
-import React, { useState, useEffect, useRef, memo } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { apiSearch } from '../api/api';
 import { withRouter } from 'react-router-dom';
+import AutoSuggestSearch from '@kantimam/react-autosuggest'
 
 
-const SearchBar = ({ list, setList, history }) => {
+const SearchBar = ({ setList, history }) => {
     const [val, setVal] = useState('');
-    const [autoOpen, setOpen]=useState(false);
-    const bounceTimeOut=useRef();
-    useEffect(() => {
-        bounceTimeOut.current=0;
-        /* if page gets reloaded or someone just uses the url fill the input value */
-        const url=new URL(window.location.toString());
-        const query=url.searchParams.get("q");
-        if(query){
-            setVal(query);
-            /* if  */
-            searchMovies(query, true);
-        }
-    }, [])
+    const [loading, setLoading] = useState(false);
+    const [suggestions, setSuggestions]=useState([]);
+    const bounceTimeOut = useRef();
+    
+    useEffect(()=>{
+        bounceTimeOut.current = 0;
+    },[])
 
-    const searchMovies = (query, displayList = false) => {
+    useEffect(() => {
+        searchValueFromUrl();
+    }, [history.location.search])
+
+    const searchValueFromUrl=()=>{
+        if(history.location.pathname!=="/search") return
+        /* if page gets reloaded or someone just uses the url fill the input value */
+        const url = new URL(window.location.toString());
+        const query = url.searchParams.get("q");
+        if (query) {
+            setVal(query);
+            searchMovies(query, true)
+            return query;
+        }
+    }
+
+    const searchMovies = (query, displayList) => {
+        if(!query) return
         const encodedQuery = encodeURIComponent(query);
+
+        setLoading(true);
         apiSearch(encodedQuery)
             .then(json => {
-                setList(json.results);
-                /* only switch route and display MovieList if displayList is set */
-                if (displayList) {
-                    setOpen(false)
-                    return history.push(`/search?q=${encodedQuery}`);
-                }
-                history.push(`/`);
-                setOpen(true);
+                setSuggestions(json.results);
+                if(displayList){
+                    setList(json.results);
+                } 
+                setLoading(false);
             })
-            .catch(e => alert(e));
+            .catch(e => {
+                alert(e);
+                setLoading(false);
+            });
     }
 
-    const onChange = (event) => {
-        const value = event.target.value;
+    const onSubmit=()=>{
+        /* searchMovies(val, true); */
+        history.push(`/search?q=${encodeURIComponent(val)}`);
+    }
+
+    const onChange = (value) => {
+        if(value===val) return
         setVal(value);
+        if (!value) return
         clearTimeout(bounceTimeOut.current);
-        //bounceTimeOut=setTimeout(()=>searchMovies(value), 800);
+        bounceTimeOut.current = setTimeout(() => searchMovies(value), 1200);
 
-        if (value.length > 2) {
-            bounceTimeOut.current=setTimeout(()=>searchMovies(value), 800);
-            /* do a partial request to get data for autocomplete */
-            //searchMovies(value);
-        }
     }
 
-    const enterAutoComplete=(str)=>{
-        setVal(str);
-        searchMovies(str, true);
-    }
-
+    console.log(history);
+    
     return (
-        <div>
-            <form
-                onSubmit={(event) => {
-                    event.preventDefault();
-                    if (val) searchMovies(val, true);
-                }}
-                className="searchForm"
-            >
-                <div className="inputWrapper">
-                    <input placeholder="enter movie title" className="searchInput" value={val} onChange={onChange} type="text" />
-                    {autoOpen &&
-                        <div className="searchAutoComplete">
-                            {list.length && list.map(item =>
-                                <p key={"auto_"+item.id} onClick={() => enterAutoComplete(item.title)}>{item.title}</p>
-                            )}
-                        </div>
-                    }
-                </div>
-                <input className="searchSubmit" type="submit" value="SEARCH" />
-            </form>
-        </div>
+        <AutoSuggestSearch
+            suggestions={suggestions}
+            value={val}
+            onSubmit={onSubmit}
+            onChange={onChange}
+            /* onSuggestionSelect={setVal} */
+
+            labelExtractor={(item)=>item.title}
+
+            loading={loading}
+            loadingIndicator={<div>L</div>}
+        />
     )
 }
 
-export default withRouter(memo(SearchBar))
+export default withRouter(SearchBar)

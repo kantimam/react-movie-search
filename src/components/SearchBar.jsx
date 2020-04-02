@@ -37,11 +37,11 @@ const SearchBar = ({ setList, history }) => {
         setLoading(true);
         apiSearch(encodedQuery)
             .then(json => {
+                setLoading(false);
                 setSuggestions(json.results);
                 if(displayList){
                     setList(json.results);
                 } 
-                setLoading(false);
             })
             .catch(e => {
                 alert(e);
@@ -55,21 +55,19 @@ const SearchBar = ({ setList, history }) => {
     }
 
     const onChange = (value) => {
-        if(value===val) return
-        setVal(value);
         if (!value) return
         clearTimeout(bounceTimeOut.current);
         bounceTimeOut.current = setTimeout(() => searchMovies(value), 1200);
 
     }
 
-    console.log(history);
     
     return (
         <AutoSuggestSearch
             suggestions={suggestions}
             value={val}
             onSubmit={onSubmit}
+            setValue={setVal}
             onChange={onChange}
             /* onSuggestionSelect={setVal} */
 

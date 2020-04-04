@@ -2,9 +2,10 @@ import React, { useState, useEffect, useRef } from 'react'
 import { apiSearch } from '../api/api';
 import { withRouter } from 'react-router-dom';
 import AutoSuggestSearch from '@kantimam/react-autosuggest'
+import { LoadingSpinner } from './LoadingSpinner';
 
 
-const SearchBar = ({ setList, history }) => {
+const SearchBar = ({ history }) => {
     const [val, setVal] = useState('');
     const [loading, setLoading] = useState(false);
     const [suggestions, setSuggestions]=useState([]);
@@ -30,7 +31,7 @@ const SearchBar = ({ setList, history }) => {
         }
     }
 
-    const searchMovies = (query, displayList) => {
+    const searchMovies = (query) => {
         if(!query) return
         const encodedQuery = encodeURIComponent(query);
 
@@ -39,9 +40,7 @@ const SearchBar = ({ setList, history }) => {
             .then(json => {
                 setLoading(false);
                 setSuggestions(json.results);
-                if(displayList){
-                    setList(json.results);
-                } 
+
             })
             .catch(e => {
                 alert(e);
@@ -70,11 +69,11 @@ const SearchBar = ({ setList, history }) => {
             setValue={setVal}
             onChange={onChange}
             /* onSuggestionSelect={setVal} */
-
+ 
             labelExtractor={(item)=>item.title}
 
             loading={loading}
-            loadingIndicator={<div>L</div>}
+            loadingIndicator={<LoadingSpinner/>}
         />
     )
 }

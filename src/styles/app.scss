@@ -1,0 +1,184 @@
+$navHeight: 3rem;
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+
+.App{
+    $bgColor: red;
+    $secColor: blue;
+    $mainColor: green;
+    background-color: $bgColor;
+    min-height: 100vh;
+}
+
+.App.darkMode{
+    $bgColor: black;
+    $secColor: orange;
+    $mainColor: lightblue;
+    background-color: $bgColor;
+}
+
+
+
+
+.textCenter {
+    text-align: center;
+}
+
+li{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+.App {
+    padding-bottom: 2rem;
+}
+main, .inner{
+    width: 80rem;
+    max-width: 94%;
+    margin: 0 auto;
+}
+main{
+    padding-top: $navHeight;
+}
+
+
+nav {
+    height: $navHeight;
+    text-transform: uppercase;
+    .inner{
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        & > ul{
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: space-between;
+            max-width: 100%;
+            width: 20rem;
+        }
+    }
+}
+.autoSuggestInput{
+    width: 20rem !important;
+    margin: 0 !important;
+    .ASI_Border{
+        background-color: white;
+
+    }
+    input{
+        border: none;
+    }
+    .ASI_Submit{
+        min-width: calc(2rem - 2px) !important;
+        background-image: url('../static/searchIcon.svg');
+        background-position: center;
+        background-size: 70%;
+        background-repeat: no-repeat;
+        cursor: pointer;
+    }
+}
+
+
+.loading {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+
+
+
+
+
+.thumbnailGrid {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: (minmax(16rem, 1fr))[auto-fill];
+    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+    grid-gap: 0.2rem;
+}
+
+
+
+
+
+.movieItem {
+    width: 100%;
+    /* height: 12rem; */
+    position: relative;
+}
+
+.movieItem img {
+    /* height: 100%; */
+    width: 100%;
+    object-fit: cover;
+}
+
+.movieItem p {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(200, 200, 200, 0.7);
+    padding: 0.2rem 0.4rem;
+    color: black;
+    font-weight: bold;
+}
+
+
+.movieView {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2rem 0;
+}
+
+.movieView img {
+    width: 20rem;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.movieView .description {
+    flex: 1;
+    min-width: 20rem;
+    max-width: 100%;
+    padding: 0.2rem 1rem;
+}
+
+.movieView p {
+    margin: 0.4rem 0;
+}
+
+.overview {
+    margin-top: 2rem !important;
+}
+
+.genres {
+    width: 100%;
+    margin: 1.4rem 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.genreItem {
+    margin: 0 0.4rem;
+    padding: 0 1rem;
+    font-weight: bold;
+    border-radius: 1rem;
+    background-color: lightgray;
+}
+
+
+
+.darkModeToggle{
+
+}

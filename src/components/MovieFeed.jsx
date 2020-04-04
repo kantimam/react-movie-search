@@ -28,13 +28,6 @@ export default class MovieSearch extends Component {
         this.searchMovie();
     }
 
-    componentWillUpdate(prevProps) {
-        if (prevProps.location.search !== this.props.location.search) {
-            console.log("up");
-            this.searchMovie();
-
-        }
-    }
 
     render() {
         if (this.state.loading) return <div>LOADING</div>

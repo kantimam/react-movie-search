@@ -7,45 +7,55 @@ $navHeight: 3rem;
 
 
 
-.App{
-    $bgColor: red;
-    $secColor: blue;
-    $mainColor: green;
-    background-color: $bgColor;
+.App {
+    --bgColor: rgb(187, 187, 187);
+    --secColor: rgb(223, 223, 223);
+    --mainColor: green;
+    --fontColor: black;
+    background-color: var(--bgColor);
     min-height: 100vh;
 }
 
-.App.darkMode{
-    $bgColor: black;
-    $secColor: orange;
-    $mainColor: lightblue;
-    background-color: $bgColor;
+.App.darkMode {
+    --bgColor: rgb(59, 59, 59);
+    --secColor: rgb(90, 90, 90);
+    --mainColor: rgb(117, 33, 185);
+    --fontColor: white;
+    background-color: var(--bgColor);
 }
 
 
+.App {
+    * {
+        color: var(--fontColor);
 
+    }
+}
 
 .textCenter {
     text-align: center;
 }
 
-li{
+li {
     list-style: none;
 }
 
-a{
+a {
     text-decoration: none;
 }
 
 .App {
     padding-bottom: 2rem;
 }
-main, .inner{
+
+main,
+.inner {
     width: 80rem;
     max-width: 94%;
     margin: 0 auto;
 }
-main{
+
+main {
     padding-top: $navHeight;
 }
 
@@ -53,12 +63,14 @@ main{
 nav {
     height: $navHeight;
     text-transform: uppercase;
-    .inner{
+    background-color: var(--secColor);
+
+    .inner {
         height: 100%;
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        & > ul{
+
+        &>ul {
             margin: 0;
             padding: 0;
             display: flex;
@@ -68,17 +80,39 @@ nav {
         }
     }
 }
-.autoSuggestInput{
-    width: 20rem !important;
-    margin: 0 !important;
-    .ASI_Border{
-        background-color: white;
+
+.autoSuggestInput {
+    width: 18rem !important;
+    height: 2rem !important;
+    margin: 0 1rem 0 auto !important;
+    border-radius: 1rem !important;
+
+    .ASI_FlexContainer {
+        border-radius: 0.9rem;
+    }
+
+    * {
+        background-color: var(--bgColor) !important;
 
     }
-    input{
+
+    .spinner {
+        * {
+            background-color: var(--fontColor) !important;
+
+        }
+    }
+
+    .ASI_SuggestionItem:hover,
+    .ASI_Active {
+        background-color: var(--secColor) !important;
+    }
+
+    input {
         border: none;
     }
-    .ASI_Submit{
+
+    .ASI_Submit {
         min-width: calc(2rem - 2px) !important;
         background-image: url('../static/searchIcon.svg');
         background-position: center;
@@ -179,6 +213,55 @@ nav {
 
 
 
-.darkModeToggle{
+.darkModeToggle {
+    height: 1.2rem;
+    width: 4rem;
+    border-radius: 2rem;
+    background-color: white;
+    position: relative;
+    overflow: hidden;
+    box-sizing: content-box;
+    border: 1px solid var(--bgColor);
+    text-transform: lowercase;
 
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    padding-left: 0.7rem;
+    background-color: rgb(48, 48, 48);
+    color: rgb(233, 233, 233);
+    line-height: 2rem;
+
+    input {
+        display: none;
+    }
+
+    .switch-handle {
+        background-color: rgb(233, 233, 233);
+        color: rgb(48, 48, 48);
+        border-radius: 2rem;
+        position: absolute;
+        left: calc(100% - 1.2rem);
+        top: 0;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        transition: 1s;
+
+        &:before {
+            content: "";
+            border-radius: 2rem;
+            height: 100%;
+            width: 1.2rem;
+            background-color: rgb(145, 145, 145);
+            margin-right: 0.1rem;
+        }
+    }
+
+    &.darkModeActive {
+        .switch-handle {
+            left: 0;
+        }
+    }
 }

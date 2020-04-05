@@ -5,12 +5,24 @@
 }
 
 .App {
-  background-color: red;
+  --bgColor: rgb(187, 187, 187);
+  --secColor: rgb(223, 223, 223);
+  --mainColor: green;
+  --fontColor: black;
+  background-color: var(--bgColor);
   min-height: 100vh;
 }
 
 .App.darkMode {
-  background-color: black;
+  --bgColor: rgb(59, 59, 59);
+  --secColor: rgb(90, 90, 90);
+  --mainColor: rgb(117, 33, 185);
+  --fontColor: white;
+  background-color: var(--bgColor);
+}
+
+.App * {
+  color: var(--fontColor);
 }
 
 .textCenter {
@@ -29,7 +41,8 @@ a {
   padding-bottom: 2rem;
 }
 
-main, .inner {
+main,
+.inner {
   width: 80rem;
   max-width: 94%;
   margin: 0 auto;
@@ -42,6 +55,7 @@ main {
 nav {
   height: 3rem;
   text-transform: uppercase;
+  background-color: var(--secColor);
 }
 
 nav .inner {
@@ -49,9 +63,6 @@ nav .inner {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -71,12 +82,27 @@ nav .inner > ul {
 }
 
 .autoSuggestInput {
-  width: 20rem !important;
-  margin: 0 !important;
+  width: 18rem !important;
+  height: 2rem !important;
+  margin: 0 1rem 0 auto !important;
+  border-radius: 1rem !important;
 }
 
-.autoSuggestInput .ASI_Border {
-  background-color: white;
+.autoSuggestInput .ASI_FlexContainer {
+  border-radius: 0.9rem;
+}
+
+.autoSuggestInput * {
+  background-color: var(--bgColor) !important;
+}
+
+.autoSuggestInput .spinner * {
+  background-color: var(--fontColor) !important;
+}
+
+.autoSuggestInput .ASI_SuggestionItem:hover,
+.autoSuggestInput .ASI_Active {
+  background-color: var(--secColor) !important;
 }
 
 .autoSuggestInput input {
@@ -177,5 +203,65 @@ nav .inner > ul {
   font-weight: bold;
   border-radius: 1rem;
   background-color: lightgray;
+}
+
+.darkModeToggle {
+  height: 1.2rem;
+  width: 4rem;
+  border-radius: 2rem;
+  background-color: white;
+  position: relative;
+  overflow: hidden;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+  border: 1px solid var(--bgColor);
+  text-transform: lowercase;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 1rem;
+  padding-left: 0.7rem;
+  background-color: #303030;
+  color: #e9e9e9;
+  line-height: 2rem;
+}
+
+.darkModeToggle input {
+  display: none;
+}
+
+.darkModeToggle .switch-handle {
+  background-color: #e9e9e9;
+  color: #303030;
+  border-radius: 2rem;
+  position: absolute;
+  left: calc(100% - 1.2rem);
+  top: 0;
+  height: 100%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+.darkModeToggle .switch-handle:before {
+  content: "";
+  border-radius: 2rem;
+  height: 100%;
+  width: 1.2rem;
+  background-color: #919191;
+  margin-right: 0.1rem;
+}
+
+.darkModeToggle.darkModeActive .switch-handle {
+  left: 0;
 }
 /*# sourceMappingURL=app.css.map */

@@ -1,11 +1,13 @@
 import React from 'react'
 
-const DarkModeToggle = ({toggleDark}) => {
+const DarkModeToggle = ({ toggleDark, darkMode }) => {
     return (
-        <label className="darkModeToggle">
+        <label className={`darkModeToggle ${darkMode ? 'darkModeActive' : ''}`}>
             <input onClick={toggleDark} className="switch-input" type="checkbox" />
-            <span className="switch-label" data-on="On" data-off="Off"></span>
-            <span className="switch-handle"></span>
+            dark
+            <span className="switch-handle">
+                light
+            </span>
         </label>
     )
 }

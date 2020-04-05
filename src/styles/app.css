@@ -7,7 +7,7 @@
 .App {
   --bgColor: rgb(187, 187, 187);
   --secColor: rgb(223, 223, 223);
-  --mainColor: green;
+  --mainColor: rgba(37, 95, 223, 0.432);
   --fontColor: black;
   background-color: var(--bgColor);
   min-height: 100vh;
@@ -50,6 +50,10 @@ main,
 
 main {
   padding-top: 3rem;
+}
+
+.margin0Auto {
+  margin: 0 auto;
 }
 
 nav {
@@ -153,6 +157,34 @@ nav .inner > ul {
   padding: 0.2rem 0.4rem;
   color: black;
   font-weight: bold;
+}
+
+.loadMore {
+  display: block;
+  margin: 4rem auto 1rem auto;
+  font-size: 1.4rem;
+  padding: 0.2rem 1rem;
+  text-transform: uppercase;
+  background-color: var(--mainColor);
+  border: none;
+  cursor: pointer;
+  -webkit-transition: 0.6s;
+  transition: 0.6s;
+}
+
+.loadMore:hover {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}
+
+.noMoreMovies {
+  width: 10rem;
+  margin: 4rem auto 1rem auto;
+  font-size: 1.4rem;
+  padding: 0.2rem 1rem;
+  text-transform: uppercase;
+  background-color: var(--secColor);
+  text-align: center;
 }
 
 .movieView {

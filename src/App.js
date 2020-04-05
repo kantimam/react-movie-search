@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import MovieView from './components/MovieView';
 import './styles/app.css';
 import MovieSearch from './components/MovieSearch';
-import {LatestMovieFeed, TrendingMovieFeed} from './components/MovieFeed';
+import {TopMovieFeed, PopularMovieFeed} from './components/MovieFeed';
 import { Nav } from './components/Nav';
 
 
@@ -24,10 +24,11 @@ export default class App extends Component {
         <Nav darkMode={this.state.darkMode} toggleDark={this.toggleDark} />
         <main>
           <Switch>
-            <Route path="/latest" component={LatestMovieFeed} />
-            <Route path="/trending" component={TrendingMovieFeed}/>
+            <Route path="/top/:page?" component={TopMovieFeed} />
             <Route path="/search" component={MovieSearch} />
             <Route path="/movie/:id" component={MovieView} />
+            <Route path="/popular/:page?" component={PopularMovieFeed}/>
+            <Route path="/:page?" component={PopularMovieFeed}/>
           </Switch>
         </main>
       </div>

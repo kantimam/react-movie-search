@@ -8,8 +8,8 @@ export const Nav = ({toggleDark, darkMode}) => {
         <nav>
             <div className="inner">
                 <ul>
-                    <li><NavLink to="/latest">Latest</NavLink></li>
-                    <li><NavLink to="/trending">Trending</NavLink></li>
+                    <li><NavLink to="/top">top rated</NavLink></li>
+                    <li><NavLink to="/popular">Popular</NavLink></li>
                     {/* <li><NavLink to="">ASD</NavLink></li> */}
                 </ul>
                 <SearchBar/>

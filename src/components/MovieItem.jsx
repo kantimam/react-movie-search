@@ -10,7 +10,7 @@ const MovieItem = ({ movie }) => {
                 <p className="moviteItemTitle">{movie.title}</p>
                 <div className="dateRatingWrapper">
                     <p className="movieRating flexCenterAll">{movie.vote_average}</p>
-                    |
+                    
                     <p className="movieDate">{fixedDate}</p>
                 </div>
             </div>

@@ -44,7 +44,7 @@ a {
 main,
 .inner {
   width: 80rem;
-  max-width: 94%;
+  max-width: 100%;
   margin: 0 auto;
 }
 
@@ -69,7 +69,7 @@ main {
 }
 
 nav {
-  z-index: 3;
+  z-index: 5;
   position: fixed;
   top: 0;
   left: 0;
@@ -80,7 +80,9 @@ nav {
 }
 
 nav .inner {
+  z-index: 5;
   height: 100%;
+  max-width: 98%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -89,8 +91,15 @@ nav .inner {
           align-items: center;
 }
 
+nav .inner h3 {
+  margin-right: 3rem;
+}
+
 nav .inner > ul {
   margin: 0;
+}
+
+.inner > ul, .mobileNav > ul {
   padding: 0;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -99,7 +108,53 @@ nav .inner > ul {
       -ms-flex-pack: justify;
           justify-content: space-between;
   max-width: 100%;
-  width: 20rem;
+  width: 12rem;
+}
+
+.openNavIcon {
+  display: none;
+  margin-left: 1.2rem;
+  border-radius: 0.4rem;
+  border: 1px solid var(--mainColor);
+  padding: 0.2rem 0.6rem;
+}
+
+.mobileNav {
+  position: fixed;
+  top: 3rem;
+  height: 8rem;
+  background-color: var(--secColor);
+  z-index: 3;
+  width: 100%;
+  -webkit-animation: openNav 2s;
+          animation: openNav 2s;
+}
+
+.mobileNav > ul {
+  margin: 0.6rem 3% 0.8rem 3%;
+}
+
+.mobileNav .autoSuggestInput {
+  width: 94% !important;
+  margin: 0 auto !important;
+}
+
+@-webkit-keyframes openNav {
+  from {
+    top: -8rem;
+  }
+  to {
+    top: 3rem;
+  }
+}
+
+@keyframes openNav {
+  from {
+    top: -8rem;
+  }
+  to {
+    top: 3rem;
+  }
 }
 
 .autoSuggestInput {
@@ -351,5 +406,23 @@ nav .inner > ul {
 
 .darkModeToggle.darkModeActive .switch-handle {
   left: 0;
+}
+
+@media (max-width: 767px) {
+  .normalNav {
+    max-width: 94% !important;
+  }
+  .normalNav ul, .normalNav .autoSuggestInput {
+    display: none !important;
+  }
+  .normalNav .darkModeToggle {
+    margin-left: auto;
+  }
+  .normalNav .openNavIcon {
+    display: block;
+  }
+  .normalNav h3 {
+    margin: 0;
+  }
 }
 /*# sourceMappingURL=app.css.map */

@@ -5,11 +5,12 @@ import { apiGetTop, apiGetPopular } from '../api/api';
 
 
 export default class MovieFeed extends Component {
-    latestPage = 1;
-    lastPage = 1;
+
     state = {
         movieList: [],
-        loading: false
+        loading: false,
+        latestPage: 1,
+        totalPages: 1
     }
 
     searchMovies = () => {
@@ -17,7 +18,11 @@ export default class MovieFeed extends Component {
         const page = this.props.match.params.page && !isNaN(this.props.match.params.page) ? this.props.match.params.page : 1;
         this.props.apiSearch(page)
             .then(json => {
-                json.results && this.setState({ loading: false, movieList: json.results })
+                json.results && this.setState({
+                    loading: false, movieList: json.results,
+                    latestPage: json.page || 1,
+                    totalPages: json.total_pages || 1
+                })
                 this.latestPage = json.page || 1;
                 this.lastPage = json.total_pages || 1;
             })
@@ -28,9 +33,16 @@ export default class MovieFeed extends Component {
     }
 
     getMoreMovies = () => {
-        this.props.apiSearch(this.latestPage + 1)
+        this.props.apiSearch(this.state.latestPage + 1)
             .then(json => {
-                json.results && this.setState({ loading: false, movieList: [...this.state.movieList, ...json.results] })
+                json.results && this.setState(
+                    {
+                        loading: false,
+                        movieList: [...this.state.movieList, ...json.results],
+                        latestPage: json.page || 1,
+                        totalPages: json.total_pages || 1
+                    }
+                )
                 this.latestPage = json.page || 1;
                 this.lastPage = json.total_pages || 1;
             })
@@ -44,15 +56,20 @@ export default class MovieFeed extends Component {
         this.searchMovies();
     }
 
+    componentDidUpdate(prevProps){
+        if(prevProps.match.params.page!==this.props.match.params.page){
+            this.searchMovies();
+        }
+    }
+
 
     render() {
-        console.log(this.props);
 
         if (this.state.loading) return <div>LOADING</div>
         if (this.state.movieList.length) return (
             <>
                 <MovieList list={this.state.movieList} />
-                {this.latestPage < this.lastPage ?
+                {this.state.latestPage < this.state.totalPages ?
                     <button onClick={this.getMoreMovies} className="loadMore">
                         more
                     </button> :

@@ -63,12 +63,21 @@ main {
     margin: 0 auto;
 }
 
+.flexCenterAll{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 nav {
+    z-index: 3;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: $navHeight;
     text-transform: uppercase;
     background-color: var(--secColor);
-
     .inner {
         height: 100%;
         display: flex;
@@ -142,6 +151,7 @@ nav {
     display: grid;
     -ms-grid-columns: (minmax(16rem, 1fr))[auto-fill];
     grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+    grid-template-rows: repeat(auto-fill, 1fr);
     grid-gap: 0.2rem;
 }
 
@@ -151,26 +161,45 @@ nav {
 
 .movieItem {
     width: 100%;
-    /* height: 12rem; */
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    img {
+        /* height: 100%; */
+        width: 100%;
+        object-fit: cover;
+        flex: 1;
+    }
 }
-
-.movieItem img {
-    /* height: 100%; */
-    width: 100%;
-    object-fit: cover;
-}
-
-.movieItem p {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: rgba(200, 200, 200, 0.7);
-    padding: 0.2rem 0.4rem;
-    color: black;
+.movieItemDesc{
+    height: 5rem;
+    display: flex;
+    flex-direction: column;
     font-weight: bold;
+
+    .moviteItemTitle{
+        height: 2.6rem;
+    }
+    .dateRatingWrapper{
+        display: flex;
+        align-items: center;
+        width: 9rem;
+        justify-content: space-between;
+        .movieDate{
+            width: 6rem;
+        }
+        .movieRating{
+            background-color: var(--mainColor);
+            width: 2rem;
+            height: 2rem;
+            border-radius: 2rem;
+        }
+    }
+
 }
+
+
+
+
 
 .loadMore{
     display: block;

@@ -19,7 +19,7 @@ const MovieView = ({match}) => {
                 </h1>
                 <div className="genres">
                     {movie.genres.map(item=>
-                        <div className="genreItem">
+                        <div className="genreItem" key={`tag_${movie.id}_${item.name}`}>
                             {item.name}
                         </div>
                     )}

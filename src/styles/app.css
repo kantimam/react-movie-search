@@ -56,7 +56,24 @@ main {
   margin: 0 auto;
 }
 
+.flexCenterAll {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 nav {
+  z-index: 3;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 3rem;
   text-transform: uppercase;
   background-color: var(--secColor);
@@ -132,13 +149,20 @@ nav .inner > ul {
   display: grid;
   -ms-grid-columns: minmax(16rem, 1fr) [auto-fill];
   grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  -ms-grid-rows: (1fr)[auto-fill];
+      grid-template-rows: repeat(auto-fill, 1fr);
   grid-gap: 0.2rem;
 }
 
 .movieItem {
   width: 100%;
-  /* height: 12rem; */
-  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .movieItem img {
@@ -146,17 +170,49 @@ nav .inner > ul {
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
 }
 
-.movieItem p {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: rgba(200, 200, 200, 0.7);
-  padding: 0.2rem 0.4rem;
-  color: black;
+.movieItemDesc {
+  height: 5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   font-weight: bold;
+}
+
+.movieItemDesc .moviteItemTitle {
+  height: 2.6rem;
+}
+
+.movieItemDesc .dateRatingWrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 9rem;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.movieItemDesc .dateRatingWrapper .movieDate {
+  width: 6rem;
+}
+
+.movieItemDesc .dateRatingWrapper .movieRating {
+  background-color: var(--mainColor);
+  width: 2rem;
+  height: 2rem;
+  border-radius: 2rem;
 }
 
 .loadMore {

@@ -5,12 +5,13 @@ import { apiSearch } from '../api/api';
 
 
 export default class MovieSearch extends Component {
-    latestPage = 1;
-    lastPage = 1;
+
     query = "";
     state = {
         movieList: [],
-        loading: false
+        loading: false,
+        latestPage: 1,
+        totalPages: 1
     }
 
     searchMovie = () => {
@@ -20,9 +21,12 @@ export default class MovieSearch extends Component {
         this.setState({ loading: true })
         apiSearch(this.query)
             .then(json => {
-                this.setState({ loading: false, movieList: json.results })
-                this.latestPage = json.page || 1;
-                this.lastPage = json.total_pages || 1;
+                this.setState({
+                    loading: false, movieList: json.results,
+                    latestPage: json.page || 1,
+                    totalPages: json.total_pages || 1
+                })
+
             })
             .catch(e => {
                 console.log(e);
@@ -43,11 +47,14 @@ export default class MovieSearch extends Component {
     }
 
     getMoreMovies = () => {
-        apiSearch(this.query, this.latestPage + 1)
+        apiSearch(this.query, this.state.latestPage + 1)
             .then(json => {
-                json.results && this.setState({ loading: false, movieList: [...this.state.movieList, ...json.results] })
-                this.latestPage=json.page || 1;
-                this.lastPage=json.total_pages || 1;
+                json.results && this.setState({
+                    loading: false, movieList: [...this.state.movieList, ...json.results],
+                    latestPage: json.page || 1,
+                    totalPages: json.total_pages || 1
+                })
+
             })
             .catch(e => {
                 console.log(e);
@@ -60,7 +67,7 @@ export default class MovieSearch extends Component {
         if (this.state.movieList.length) return (
             <>
                 <MovieList list={this.state.movieList} />
-                {this.latestPage < this.lastPage ?
+                {this.state.latestPage < this.state.totalPages ?
                     <button onClick={this.getMoreMovies} className="loadMore">
                         more
                     </button> :

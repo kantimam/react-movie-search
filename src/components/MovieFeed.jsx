@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import queryString from 'query-string';
 import MovieList from './MovieList'
 import { apiGetTop, apiGetPopular } from '../api/api';
+import MovieFeedShell from './MovieFeedShell';
 
 
 export default class MovieFeed extends Component {
@@ -16,6 +16,9 @@ export default class MovieFeed extends Component {
     searchMovies = () => {
         /* function to get movies needs to be provided */
         const page = this.props.match.params.page && !isNaN(this.props.match.params.page) ? this.props.match.params.page : 1;
+        
+        this.setState({loading: true})
+
         this.props.apiSearch(page)
             .then(json => {
                 json.results && this.setState({
@@ -65,7 +68,7 @@ export default class MovieFeed extends Component {
 
     render() {
 
-        if (this.state.loading) return <div>LOADING</div>
+        if (this.state.loading) return <MovieFeedShell/>
         if (this.state.movieList.length) return (
             <>
                 <MovieList list={this.state.movieList} />

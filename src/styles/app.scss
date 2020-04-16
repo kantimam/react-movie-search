@@ -80,13 +80,14 @@ nav {
     background-color: var(--secColor);
 
     .inner {
-        z-index: 5;
-
+        background-color: var(--secColor);
+        z-index: 6;
         height: 100%;
         max-width: 98%;
         display: flex;
         align-items: center;
         h3{
+            text-transform: none;
             margin-right: 3rem;
         }
 
@@ -119,7 +120,7 @@ nav {
     top: $navHeight;
     height: 8rem;
     background-color: var(--secColor);
-    z-index: 3;
+    z-index: -1;
     width: 100%;
     animation: openNav 2s;
     &>ul{
@@ -193,9 +194,8 @@ nav {
 
 
 .thumbnailGrid {
-    display: -ms-grid;
+    padding-top: 0.2rem;
     display: grid;
-    -ms-grid-columns: (minmax(16rem, 1fr))[auto-fill];
     grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
     grid-template-rows: repeat(auto-fill, 1fr);
     grid-gap: 0.2rem;
@@ -210,15 +210,25 @@ nav {
     display: flex;
     flex-direction: column;
 
-    img {
-        /* height: 100%; */
+
+    .imageContainer{
         width: 100%;
-        object-fit: cover;
-        flex: 1;
+        height: 0;
+        padding-bottom: 150%;
+        position: relative;
+        background-color: var(--secColor);
+        img {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            flex: 1;
+        }
     }
 }
 
 .movieItemDesc {
+    margin-top: 0.2rem;
     height: 5rem;
     display: flex;
     flex-direction: column;
@@ -249,8 +259,26 @@ nav {
 }
 
 
+.movieItemShell{
+    width: 100%;
+    height: 5.2rem;
+    background-color: var(--secColor);
+    padding-bottom: 150%;
+    border-radius: 0.6rem;
+    animation: scaleAnimation 2s infinite ease-in-out;
+}
 
-
+@keyframes scaleAnimation{
+    0%{
+        transform: scale(1);
+    }
+    70%{
+        transform: scale(0.96);
+    }
+    100%{
+        transform: scale(1.0);
+    }
+}
 
 .loadMore {
     display: block;
@@ -323,60 +351,33 @@ nav {
     background-color: lightgray;
 }
 
-
-
-.darkModeToggle {
-    height: 1.2rem;
-    width: 4rem;
-    border-radius: 2rem;
-    background-color: white;
-    position: relative;
-    overflow: hidden;
-    box-sizing: content-box;
-    border: 1px solid var(--bgColor);
+#darkModeToggle{
+    background-color: var(--mainColor);
+    border: none;
+    transition: 0.6s ease-in-out;
+    height: 1.4rem;
+    width: 5.2rem;
+    font-size: 0.8rem;
     text-transform: lowercase;
-
-    display: flex;
-    align-items: center;
-    font-size: 1rem;
-    padding-left: 0.7rem;
-    background-color: rgb(48, 48, 48);
-    color: rgb(233, 233, 233);
-    line-height: 2rem;
-
-    input {
-        display: none;
+    .switchHandle{
+        border: 1px solid var(--fontColor);
+        background-color: var(--secColor);
+        opacity: 0.4;
+    }
+    &:after{
+        font-weight: bold;
     }
 
-    .switch-handle {
-        background-color: rgb(233, 233, 233);
-        color: rgb(48, 48, 48);
-        border-radius: 2rem;
-        position: absolute;
-        left: calc(100% - 1.2rem);
-        top: 0;
-        height: 100%;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        transition: 1s;
-
-        &:before {
-            content: "";
-            border-radius: 2rem;
-            height: 100%;
-            width: 1.2rem;
-            background-color: rgb(145, 145, 145);
-            margin-right: 0.1rem;
+    &.darkActive{
+        &:before{
+            font-weight: bold;
         }
-    }
-
-    &.darkModeActive {
-        .switch-handle {
-            left: 0;
+        &:after{
+            font-weight: unset;
         }
     }
 }
+
 
 @media (max-width: 767px) {
 
@@ -392,7 +393,7 @@ nav {
             display: block;
         }
         h3{
-            margin: 0;
+            margin: 0 !important;
         }
     }
 

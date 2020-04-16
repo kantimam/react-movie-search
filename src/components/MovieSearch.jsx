@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import queryString from 'query-string';
 import MovieList from './MovieList'
 import { apiSearch } from '../api/api';
+import MovieFeedShell from './MovieFeedShell';
 
 
 export default class MovieSearch extends Component {
@@ -63,7 +64,7 @@ export default class MovieSearch extends Component {
     }
 
     render() {
-        if (this.state.loading) return <div>LOADING</div>
+        if (this.state.loading) return <MovieFeedShell/>
         if (this.state.movieList.length) return (
             <>
                 <MovieList list={this.state.movieList} />

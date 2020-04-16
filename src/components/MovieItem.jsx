@@ -5,7 +5,9 @@ const MovieItem = ({ movie }) => {
     const fixedDate = movie.release_date.split('-').reverse().join('-');
     return (
         <Link to={`/movie/${movie.id}`} className="movieItem">
-            <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt="movie poster" />
+            <div className="imageContainer">
+                <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt="movie poster" />
+            </div>
             <div className="movieItemDesc">
                 <p className="moviteItemTitle">{movie.title}</p>
                 <div className="dateRatingWrapper">

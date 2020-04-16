@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import { apiGetMovie } from '../api/api'
+import { LoadingScreen } from './LoadingScreen';
 
 const MovieView = ({match}) => {
     const [movie, setMovie]=useState(null);
@@ -8,7 +9,7 @@ const MovieView = ({match}) => {
         apiGetMovie(match.params.id).then(json=>setMovie(json)).catch(e=>setError('failed! :( maybe try reloading the page'))
     }, [match.params.id])
     
-    if(!movie) return <div className="textCenter loading">LOADING...</div>
+    if(!movie) return <LoadingScreen delay={800} message="loading"/>
     
     return (
         <div className="movieView">

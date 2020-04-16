@@ -3,6 +3,7 @@ import queryString from 'query-string';
 import MovieList from './MovieList'
 import { apiSearch } from '../api/api';
 import MovieFeedShell from './MovieFeedShell';
+import NotFound from './NotFound';
 
 
 export default class MovieSearch extends Component {
@@ -78,6 +79,6 @@ export default class MovieSearch extends Component {
                 }
             </>
         )
-        return <div>NOTHING FOUND</div>
+        return <NotFound/>
     }
 }

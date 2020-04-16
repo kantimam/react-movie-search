@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import MovieList from './MovieList'
 import { apiGetTop, apiGetPopular } from '../api/api';
 import MovieFeedShell from './MovieFeedShell';
+import NotFound from './NotFound';
 
 
 export default class MovieFeed extends Component {
@@ -82,7 +83,7 @@ export default class MovieFeed extends Component {
                 }
             </>
         )
-        return <div>NOTHING FOUND</div>
+        return <NotFound/>
     }
 }
 

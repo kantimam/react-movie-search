@@ -430,6 +430,32 @@ nav .inner > ul {
   font-weight: unset;
 }
 
+#notFound {
+  height: 70vh;
+  max-height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+#notFound img {
+  width: 18rem;
+  max-width: 100%;
+  padding-bottom: 2rem;
+}
+
 @media (max-width: 767px) {
   .normalNav {
     max-width: 94% !important;

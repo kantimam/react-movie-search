@@ -14,6 +14,7 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0"
   },
+
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -34,8 +35,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@size-limit/preset-small-lib": "^4.4.5"
   }
 }

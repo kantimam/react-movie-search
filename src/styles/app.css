@@ -13,12 +13,37 @@
   min-height: 100vh;
 }
 
+.App .trailerLink {
+  background-color: var(--mainColor);
+  padding: 0.8rem 0 0.8rem 1.6rem;
+  text-align: center;
+  width: 11rem;
+  border-radius: 0.6rem;
+  background-image: url("../static/movieLight.svg");
+  background-size: 1.8rem;
+  background-position: 0.3rem center;
+  background-repeat: no-repeat;
+  font-weight: bold;
+  -webkit-transition: 0.2s ease-in-out;
+  transition: 0.2s ease-in-out;
+  margin: 0.8rem 0;
+}
+
+.App .trailerLink:hover {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+}
+
 .App.darkMode {
   --bgColor: rgb(59, 59, 59);
   --secColor: rgb(90, 90, 90);
   --mainColor: rgb(117, 33, 185);
   --fontColor: white;
   background-color: var(--bgColor);
+}
+
+.App.darkMode .trailerLink {
+  background-image: url("../static/movieDark.svg");
 }
 
 .App * {
@@ -101,7 +126,8 @@ nav .inner > ul {
   margin: 0;
 }
 
-.inner > ul, .mobileNav > ul {
+.inner > ul,
+.mobileNav > ul {
   padding: 0;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -128,8 +154,8 @@ nav .inner > ul {
   background-color: var(--secColor);
   z-index: -1;
   width: 100%;
-  -webkit-animation: openNav 2s;
-          animation: openNav 2s;
+  -webkit-animation: openNav 0.4s ease-in-out;
+          animation: openNav 0.4s ease-in-out;
 }
 
 .mobileNav > ul {
@@ -223,7 +249,7 @@ nav .inner > ul {
           flex-direction: column;
 }
 
-.movieItem .imageContainer {
+.imageDimension {
   width: 100%;
   height: 0;
   padding-bottom: 150%;
@@ -231,15 +257,12 @@ nav .inner > ul {
   background-color: var(--secColor);
 }
 
-.movieItem .imageContainer img {
+.imageDimension img {
   position: absolute;
   height: 100%;
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
 }
 
 .movieItemDesc {
@@ -276,11 +299,12 @@ nav .inner > ul {
   width: 6rem;
 }
 
-.movieItemDesc .dateRatingWrapper .movieRating {
+.movieRating {
   background-color: var(--mainColor);
   width: 2rem;
   height: 2rem;
   border-radius: 2rem;
+  font-weight: bold;
 }
 
 .movieItemShell {
@@ -360,8 +384,8 @@ nav .inner > ul {
   padding: 2rem 0;
 }
 
-.movieView img {
-  width: 20rem;
+.movieView .imageWrapper {
+  width: 24rem;
   max-width: 100%;
   margin: 0 auto;
 }
@@ -372,33 +396,90 @@ nav .inner > ul {
           flex: 1;
   min-width: 20rem;
   max-width: 100%;
-  padding: 0.2rem 1rem;
-}
-
-.movieView p {
-  margin: 0.4rem 0;
-}
-
-.overview {
-  margin-top: 2rem !important;
-}
-
-.genres {
-  width: 100%;
-  margin: 1.4rem 0;
+  padding: 0.2rem 2rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.movieView .basicInfo {
+  margin-top: 1.2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
 
-.genreItem {
-  margin: 0 0.4rem;
-  padding: 0 1rem;
+.movieView .basicInfo p {
+  margin: 0 0 0 0.4rem;
+}
+
+.movieView .basicInfo .movieRating {
+  position: relative;
+  width: 3.6rem;
+  height: 3.6rem;
+  background-color: var(--secColor);
+  font-size: 1.3rem;
+}
+
+.movieView .basicInfo .movieRating svg {
+  position: absolute;
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+}
+
+.movieView .basicInfo .movieRating svg circle {
+  stroke: #7521b9;
+}
+
+.movieView .basicInfo .movieRating .bgCircle circle {
+  stroke: var(--bgColor);
+}
+
+.movieView .basicInfo .release {
+  font-weight: bold;
+}
+
+.movieView .basicInfo .release:after, .movieView .basicInfo .voteCount:after, .movieView .basicInfo .runtime:after {
+  content: "|";
+  margin-left: 0.4rem;
+  font-weight: normal;
+}
+
+.movieView .overview {
+  margin-top: 2rem !important;
+  margin-bottom: 2rem;
+}
+
+.movieView a {
+  margin-top: auto;
+}
+
+.movieView .genres {
+  width: 100%;
+  margin: 1.4rem 0;
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 0.4rem 0.6rem;
+  -ms-grid-columns: (minmax(8rem, 1fr))[auto-fill];
+      grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+  -ms-grid-rows: (1fr)[auto-fill];
+      grid-template-rows: repeat(auto-fill, 1fr);
+}
+
+.movieView .genreItem {
+  height: 1.6rem;
   font-weight: bold;
   border-radius: 1rem;
-  background-color: lightgray;
+  background-color: var(--secColor);
 }
 
 #darkModeToggle {
@@ -460,7 +541,8 @@ nav .inner > ul {
   .normalNav {
     max-width: 94% !important;
   }
-  .normalNav ul, .normalNav .autoSuggestInput {
+  .normalNav ul,
+  .normalNav .autoSuggestInput {
     display: none !important;
   }
   .normalNav .darkModeToggle {

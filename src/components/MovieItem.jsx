@@ -2,10 +2,10 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 
 const MovieItem = ({ movie }) => {
-    const fixedDate = movie.release_date.split('-').reverse().join('-');
+    const fixedDate = movie.release_date.split('-').reverse().join('.');
     return (
         <Link to={`/movie/${movie.id}`} className="movieItem">
-            <div className="imageContainer">
+            <div className="imageDimension">
                 <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt="movie poster" />
             </div>
             <div className="movieItemDesc">

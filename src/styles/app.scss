@@ -14,6 +14,24 @@ $navHeight: 3rem;
     --fontColor: black;
     background-color: var(--bgColor);
     min-height: 100vh;
+
+    .trailerLink{
+        background-color: var(--mainColor);
+        padding: 0.8rem 0 0.8rem 1.6rem;
+        text-align: center;
+        width: 11rem;
+        border-radius: 0.6rem;
+        background-image: url("../static/movieLight.svg");
+        background-size: 1.8rem;
+        background-position: 0.3rem center;
+        background-repeat: no-repeat;
+        font-weight: bold;
+        transition: 0.2s ease-in-out;
+        margin: 0.8rem 0;
+        &:hover{
+            transform: scale(1.05);
+        }
+    }
 }
 
 .App.darkMode {
@@ -22,6 +40,10 @@ $navHeight: 3rem;
     --mainColor: rgb(117, 33, 185);
     --fontColor: white;
     background-color: var(--bgColor);
+
+    .trailerLink{
+        background-image: url("../static/movieDark.svg");
+    }
 }
 
 
@@ -86,18 +108,20 @@ nav {
         max-width: 98%;
         display: flex;
         align-items: center;
-        h3{
+
+        h3 {
             text-transform: none;
             margin-right: 3rem;
         }
 
-        &>ul{
+        &>ul {
             margin: 0;
         }
     }
 }
 
-.inner, .mobileNav{
+.inner,
+.mobileNav {
     &>ul {
         padding: 0;
         display: flex;
@@ -115,28 +139,31 @@ nav {
     padding: 0.2rem 0.6rem;
 }
 
-.mobileNav{
+.mobileNav {
     position: fixed;
     top: $navHeight;
     height: 8rem;
     background-color: var(--secColor);
     z-index: -1;
     width: 100%;
-    animation: openNav 2s;
-    &>ul{
+    animation: openNav 0.4s ease-in-out;
+
+    &>ul {
         margin: 0.6rem 3% 0.8rem 3%;
     }
-    .autoSuggestInput{
+
+    .autoSuggestInput {
         width: 94% !important;
         margin: 0 auto !important;
     }
 }
 
-@keyframes openNav{
-    from{
+@keyframes openNav {
+    from {
         top: -8rem;
     }
-    to{
+
+    to {
         top: $navHeight;
     }
 }
@@ -209,21 +236,20 @@ nav {
     width: 100%;
     display: flex;
     flex-direction: column;
+}
 
+.imageDimension {
+    width: 100%;
+    height: 0;
+    padding-bottom: 150%;
+    position: relative;
+    background-color: var(--secColor);
 
-    .imageContainer{
+    img {
+        position: absolute;
+        height: 100%;
         width: 100%;
-        height: 0;
-        padding-bottom: 150%;
-        position: relative;
-        background-color: var(--secColor);
-        img {
-            position: absolute;
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
-            flex: 1;
-        }
+        object-fit: cover;
     }
 }
 
@@ -248,18 +274,20 @@ nav {
             width: 6rem;
         }
 
-        .movieRating {
-            background-color: var(--mainColor);
-            width: 2rem;
-            height: 2rem;
-            border-radius: 2rem;
-        }
+
     }
 
 }
 
+.movieRating {
+    background-color: var(--mainColor);
+    width: 2rem;
+    height: 2rem;
+    border-radius: 2rem;
+    font-weight: bold;
+}
 
-.movieItemShell{
+.movieItemShell {
     width: 100%;
     height: 5.2rem;
     background-color: var(--secColor);
@@ -268,14 +296,16 @@ nav {
     animation: scaleAnimation 2s infinite ease-in-out;
 }
 
-@keyframes scaleAnimation{
-    0%{
+@keyframes scaleAnimation {
+    0% {
         transform: scale(1);
     }
-    70%{
+
+    70% {
         transform: scale(0.96);
     }
-    100%{
+
+    100% {
         transform: scale(1.0);
     }
 }
@@ -313,45 +343,93 @@ nav {
     display: flex;
     flex-wrap: wrap;
     padding: 2rem 0;
+
+    .imageWrapper {
+        width: 24rem;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    .description {
+        flex: 1;
+        min-width: 20rem;
+        max-width: 100%;
+        padding: 0.2rem 2rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .basicInfo {
+        margin-top: 1.2rem;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        p{
+            margin: 0 0 0 0.4rem;
+            
+        }
+        .movieRating{
+            position: relative;
+            width: 3.6rem;
+            height: 3.6rem;
+            background-color: var(--secColor);
+            font-size: 1.3rem;
+            svg{
+                position: absolute;
+                transform: rotate(-90deg);
+                circle{
+                    stroke: rgb(117, 33, 185);
+                }
+            }
+            .bgCircle{
+                circle{
+                    stroke: var(--bgColor);
+                }
+            }
+        }
+        .release{
+            font-weight: bold;
+        }
+        .release, .voteCount, .runtime{
+            &:after{
+                content: "|";
+                margin-left: 0.4rem;
+                font-weight: normal;
+            }
+        }
+    }
+
+    .overview {
+        margin-top: 2rem !important;
+        margin-bottom: 2rem;
+    }
+
+    a{
+        margin-top: auto;
+    }
+
+
+
+    .genres {
+        width: 100%;
+        margin: 1.4rem 0;
+        display: grid;
+        grid-gap: 0.4rem 0.6rem;
+        grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+        grid-template-rows: repeat(auto-fill, 1fr);
+    }
+
+    .genreItem {
+        height: 1.6rem;
+        font-weight: bold;
+        border-radius: 1rem;
+        background-color: var(--secColor);
+    }
 }
 
-.movieView img {
-    width: 20rem;
-    max-width: 100%;
-    margin: 0 auto;
-}
 
-.movieView .description {
-    flex: 1;
-    min-width: 20rem;
-    max-width: 100%;
-    padding: 0.2rem 1rem;
-}
 
-.movieView p {
-    margin: 0.4rem 0;
-}
-
-.overview {
-    margin-top: 2rem !important;
-}
-
-.genres {
-    width: 100%;
-    margin: 1.4rem 0;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.genreItem {
-    margin: 0 0.4rem;
-    padding: 0 1rem;
-    font-weight: bold;
-    border-radius: 1rem;
-    background-color: lightgray;
-}
-
-#darkModeToggle{
+#darkModeToggle {
     background-color: var(--mainColor);
     border: none;
     transition: 0.6s ease-in-out;
@@ -359,26 +437,29 @@ nav {
     width: 5.2rem;
     font-size: 0.8rem;
     text-transform: lowercase;
-    .switchHandle{
+
+    .switchHandle {
         border: 1px solid var(--fontColor);
         background-color: var(--secColor);
         opacity: 0.4;
     }
-    &:after{
+
+    &:after {
         font-weight: bold;
     }
 
-    &.darkActive{
-        &:before{
+    &.darkActive {
+        &:before {
             font-weight: bold;
         }
-        &:after{
+
+        &:after {
             font-weight: unset;
         }
     }
 }
 
-#notFound{
+#notFound {
     height: 70vh;
     max-height: 100%;
     display: flex;
@@ -386,11 +467,12 @@ nav {
     justify-content: center;
     align-items: center;
 
-    img{
+    img {
         width: 18rem;
         max-width: 100%;
         padding-bottom: 2rem;
     }
+
     font-size: 2rem;
     font-weight: bold;
 }
@@ -400,16 +482,21 @@ nav {
 
     .normalNav {
         max-width: 94% !important;
-        ul, .autoSuggestInput{
+
+        ul,
+        .autoSuggestInput {
             display: none !important;
         }
-        .darkModeToggle{
+
+        .darkModeToggle {
             margin-left: auto;
         }
+
         .openNavIcon {
             display: block;
         }
-        h3{
+
+        h3 {
             margin: 0 !important;
         }
     }

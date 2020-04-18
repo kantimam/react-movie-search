@@ -2,7 +2,7 @@ const KEY=process.env.REACT_APP_API_KEY;
 const API_BASE=process.env.REACT_APP_API_BASE;
 
 const SEARCH_URL=(query, page)=>`${API_BASE}search/movie?api_key=${KEY}&query=${query}&page=${page}`
-const GET_MOVIE_URL=(movieId)=>`${API_BASE}movie/${movieId}?api_key=${KEY}`
+const GET_MOVIE_URL=(movieId)=>`${API_BASE}movie/${movieId}?api_key=${KEY}&append_to_response=videos`
 
 export const apiSearch=(query, page=1)=>fetch(SEARCH_URL(query, page)).then(response=>response.json());
 

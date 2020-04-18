@@ -8,13 +8,15 @@ export const Nav = ({ toggleDark, darkMode }) => {
     return (
         <nav>
             <div className="inner normalNav">
-                <h3>CoronaAid</h3>
+                <NavLink to="/"><h3>CoronaAid</h3></NavLink>
+
+
                 <ul>
                     <li><NavLink to="/top">top rated</NavLink></li>
                     <li><NavLink to="/popular">Popular</NavLink></li>
                 </ul>
                 <SearchBar />
-                <DarkModeToggle activeClass="darkActive" id="darkModeToggle" isChecked={darkMode} toggleChecked={toggleDark}/>
+                <DarkModeToggle activeClass="darkActive" id="darkModeToggle" isChecked={darkMode} toggleChecked={toggleDark} />
                 <div onClick={() => setMobileOpen(!mobileOpen)} className="openNavIcon">NAV</div>
 
             </div>

@@ -13,7 +13,10 @@ const MovieView = ({ match }) => {
     if (!movie) return <LoadingScreen delay={800} message="loading" />
 
 
-    const fixedDate = movie.release_date.split('-').reverse().join('.');
+    const fixedDate = movie.release_date && movie.release_date instanceof String ?
+        movie.release_date.split('-').reverse().join('.') : '';
+
+
     return (
         <div className="movieView">
             <div className="imageWrapper">
@@ -29,7 +32,7 @@ const MovieView = ({ match }) => {
                     <div className="movieRating flexCenterAll">
                         {movie.vote_average || 0}
                         <CircularProgress className="bgCircle" radius={33} stroke={4} progress={100} />
-                        <CircularProgress radius={35} stroke={5} progress={movie.vote_average*10} />
+                        <CircularProgress radius={35} stroke={5} progress={movie.vote_average * 10} />
                     </div>
                     <p className="voteCount">
                         <strong>{movie.vote_count || 0}</strong> votes

@@ -140,6 +140,7 @@ nav .inner > ul {
 }
 
 .openNavIcon {
+  cursor: pointer;
   display: none;
   margin-left: 1.2rem;
   border-radius: 0.4rem;
@@ -235,7 +236,7 @@ nav .inner > ul {
       grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
   -ms-grid-rows: (1fr)[auto-fill];
       grid-template-rows: repeat(auto-fill, 1fr);
-  grid-gap: 0.2rem;
+  grid-gap: 0.3rem;
 }
 
 .movieItem {
@@ -247,6 +248,9 @@ nav .inner > ul {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  background-color: var(--secColor);
+  border-radius: 0.2rem;
+  overflow: hidden;
 }
 
 .imageDimension {
@@ -254,7 +258,6 @@ nav .inner > ul {
   height: 0;
   padding-bottom: 150%;
   position: relative;
-  background-color: var(--secColor);
 }
 
 .imageDimension img {
@@ -267,6 +270,7 @@ nav .inner > ul {
 
 .movieItemDesc {
   margin-top: 0.2rem;
+  margin-left: 0.4rem;
   height: 5rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -414,11 +418,10 @@ nav .inner > ul {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
 }
 
-.movieView .basicInfo p {
+.movieView .basicInfo p,
+.movieView .basicInfo time {
   margin: 0 0 0 0.4rem;
 }
 
@@ -444,11 +447,25 @@ nav .inner > ul {
   stroke: var(--bgColor);
 }
 
+.movieView .basicInfo .basicInfoInner {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-left: 0.2rem;
+}
+
 .movieView .basicInfo .release {
   font-weight: bold;
 }
 
-.movieView .basicInfo .release:after, .movieView .basicInfo .voteCount:after, .movieView .basicInfo .runtime:after {
+.movieView .basicInfo .release:after,
+.movieView .basicInfo .voteCount:after,
+.movieView .basicInfo .runtime:after {
   content: "|";
   margin-left: 0.4rem;
   font-weight: normal;

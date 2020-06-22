@@ -23,7 +23,6 @@ const SearchBar = ({ history }) => {
         if (query) {
             setVal(query);
             searchMovies(query, true)
-            return query;
         }
     
     }, [history.location.search, history.location.pathname])

@@ -16,10 +16,6 @@ const SearchBar = ({ history }) => {
     },[])
 
     useEffect(() => {
-        searchValueFromUrl();
-    }, [history.location.search])
-
-    const searchValueFromUrl=()=>{
         if(history.location.pathname!=="/search") return
         /* if page gets reloaded or someone just uses the url fill the input value */
         const url = new URL(window.location.toString());
@@ -29,7 +25,10 @@ const SearchBar = ({ history }) => {
             searchMovies(query, true)
             return query;
         }
-    }
+    
+    }, [history.location.search, history.location.pathname])
+
+    
 
     const searchMovies = (query) => {
         if(!query) return

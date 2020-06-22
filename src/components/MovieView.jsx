@@ -5,7 +5,7 @@ import CircularProgress from "./CircularProgress";
 
 const MovieView = ({ match }) => {
   const [movie, setMovie] = useState(null);
-  const [error, setError] = useState("");
+  const [, setError] = useState("");
   useEffect(() => {
     apiGetMovie(match.params.id)
       .then((json) => setMovie(json))

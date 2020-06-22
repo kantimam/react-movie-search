@@ -9,7 +9,7 @@ export const LoadingScreen = ({message, delay=0}) => {
         return () => {
             if(delay) clearTimeout(timeOutRef.current);
         }
-    }, [])
+    }, [delay])
 
     if(!visible) return null;
 
